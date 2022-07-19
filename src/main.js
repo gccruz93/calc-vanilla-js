@@ -1,1 +1,1 @@
-const calc = new Calculator("calculator");
+window.calc = new Calculator('calculator');
