@@ -6,4 +6,12 @@ module.exports = {
     node: true,
   },
   extends: ['eslint:recommended'],
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+  },
 };
