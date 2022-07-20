@@ -3,25 +3,25 @@ html {
 }
 
 body {
-  color: #ffffff;
   background-color: #1f1f1f;
+  color: #ffffff;
   margin: 0;
 }
 
 #calculator {
-  position: relative;
-  max-width: 440px;
   margin: 0 auto;
+  max-width: 390px;
   padding: 1rem 0.25rem;
+  position: relative;
 }
 
 #result {
-  min-height: 30px;
   color: #aaaaaa;
-  margin: 0;
   font-size: 18px;
-  text-align: right;
+  margin: 0;
+  min-height: 30px;
   padding-right: 1rem;
+  text-align: right;
 }
 
 input {
@@ -29,8 +29,8 @@ input {
   border: none;
   color: #ffffff;
   font-size: 50px;
-  width: 100%;
   text-align: right;
+  width: 100%;
 }
 input::selection {
   background-color: #424242;
@@ -44,13 +44,13 @@ input::selection {
 }
 
 .grid-item {
-  background-color: #060606;
-  justify-self: stretch;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  background-color: #060606;
+  display: flex;
   font-size: 20px;
+  justify-content: center;
+  justify-self: stretch;
+  padding: 1rem 0;
 }
 .grid-item.action {
   background-color: #131313;
