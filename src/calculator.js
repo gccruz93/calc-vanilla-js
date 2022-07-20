@@ -32,8 +32,7 @@ class Calculator {
     this.mountInput();
     this.mountGrid();
 
-    this.$input.value = '3+6';
-    this.$result.innerHTML = '9';
+    this.$input.value = '0';
   }
 
   mountResult() {
@@ -57,17 +56,17 @@ class Calculator {
     this.mountButton('%', 'action', 'calcPercentage');
     this.mountButton('CE', 'action', 'CE');
     this.mountButton('C', 'action', 'C');
-    this.mountButton('<-', 'action', 'fix');
+    this.mountButton('«', 'action', 'fix');
 
     this.mountButton('1/x', 'action', 'oneDivX');
     this.mountButton('x²', 'action', 'square');
     this.mountButton('Vx²', 'action', 'squareRoot');
-    this.mountButton('/', 'action', 'divide');
+    this.mountButton('÷', 'action', 'divide');
 
     this.mountButton('7', '', 'appendInput', '7');
     this.mountButton('8', '', 'appendInput', '8');
     this.mountButton('9', '', 'appendInput', '9');
-    this.mountButton('X', 'action', 'multiply');
+    this.mountButton('×', 'action', 'multiply');
 
     this.mountButton('4', '', 'appendInput', '4');
     this.mountButton('5', '', 'appendInput', '5');
@@ -117,15 +116,35 @@ class Calculator {
     setInput(str) {
       window.calc.$input.value = str;
     },
+    /**
+     *
+     * @returns {String}
+     */
+    getInput() {
+      return window.calc.$input.value;
+    },
     clearInput() {
-      window.calc.functions.setInput('');
+      window.calc.functions.setInput('0');
     },
     /**
      *
      * @param {String} str
      */
     appendInput(str) {
-      window.calc.$input.value += str;
+      if (window.calc.functions.getInput().length >= 14) return;
+      if (window.calc.functions.getInput() == '0') {
+        if (str == '0') return;
+        window.calc.functions.setInput(str);
+      } else {
+        window.calc.$input.value += str;
+      }
+    },
+    popInput() {
+      if (!window.calc.functions.getInput())
+        window.calc.functions.setInput('0');
+      window.calc.functions.setInput(window.calc.$input.value.slice(0, -1));
+      if (!window.calc.functions.getInput())
+        window.calc.functions.setInput('0');
     },
     /**
      *
@@ -142,14 +161,15 @@ class Calculator {
       console.log('calcPercentage');
     },
     CE() {
-      console.log('CE');
+      window.calc.functions.clearInput();
+      window.calc.functions.clearResult();
     },
     C() {
       window.calc.functions.clearInput();
       window.calc.functions.clearResult();
     },
     fix() {
-      console.log('fix');
+      window.calc.functions.popInput();
     },
     oneDivX() {
       console.log('oneDivX');
